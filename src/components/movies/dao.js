@@ -1,8 +1,8 @@
 import Character from '../characters/model.js';
 import Movie from './model.js';
-import CharacterMovie from '../../JoinModels/characterMovie.js';
+import CharacterMovie from '../../joinModels/characterMovie.js';
 import Genre from '../genres/model.js';
-import MovieGenre from '../../JoinModels/movieGenre.js';
+import MovieGenre from '../../joinModels/movieGenre.js';
 
 class moviesDao {
   async getAll(queries) {
