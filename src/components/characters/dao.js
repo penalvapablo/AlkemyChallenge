@@ -5,7 +5,7 @@ import CharacterMovie from '../../joinModels/characterMovie.js';
 class charactersDao {
   async getAll(queries) {
     try {
-      const { name, age, movie } = queries;
+      const { name, age, movie, weight } = queries;
       const characterFilters = {};
       const movieFilters = {};
       if (name) {
@@ -13,6 +13,9 @@ class charactersDao {
       }
       if (age) {
         characterFilters.age = age;
+      }
+      if (weight) {
+        characterFilters.weight = weight;
       }
       if (movie) {
         movieFilters.id = movie;
