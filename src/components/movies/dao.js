@@ -15,14 +15,18 @@ class moviesDao {
       // Ascendent order by Id as default
       let orderFilter = ['id', 'ASC'];
 
-        if (order) {
-          const casedOrder = order.toUpperCase();
-          if(casedOrder === 'ASC' || casedOrder === 'DESC') { orderFilter = ['year', order] } else {
-            return {error: 'orden inválido. Debe ser ASC o DESC'}
-          }
+      if (order) {
+        const casedOrder = order.toUpperCase();
+        if (casedOrder === 'ASC' || casedOrder === 'DESC') {
+          orderFilter = ['year', order];
+        } else {
+          return { error: 'invalid order. Must be ASC or DESC' };
+        }
       }
 
       let movies;
+
+      //Filter by genre
       if (genre) {
         const genreFilters = {};
         genreFilters.id = genre;
@@ -84,7 +88,8 @@ class moviesDao {
       const exist = await Movie.findOne({
         where: { title: `${newMovieData.title}` },
       });
-      if (exist) return {error :`movie already registered: ${newMovieData.title}`}
+      if (exist)
+        return { error: `movie already registered: ${newMovieData.title}` };
 
       // Update codename for query by name -> el rey leon = elreyleon
       const codename = newMovieData.title.split(' ').join('');

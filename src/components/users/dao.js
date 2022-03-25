@@ -19,7 +19,7 @@ class UsersDao {
   async getUser(email, password) {
     try {
       const user = await User.findOne({ where: { email: `${email}` } });
-      if (!user) return {error: 'user not found'}
+      if (!user) return { error: 'user not found' };
       const confirmPassword = await bcrypt.compare(password, user.password);
       if (!confirmPassword) {
         return { error: 'incorrect password' };

@@ -1,10 +1,13 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/db.js";
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/db.js';
 
-const MovieGenre = sequelize.define('MovieGenre',{
-  genreId: DataTypes.INTEGER,
-  movieId: DataTypes.INTEGER
-},
-{ timestamps: false })
+const MovieGenre = sequelize.define(
+  'MovieGenre',
+  {
+    genreId: DataTypes.INTEGER,
+    movieId: DataTypes.INTEGER,
+  },
+  { timestamps: false }
+);
 
-export default MovieGenre
+export default MovieGenre;

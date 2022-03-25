@@ -89,7 +89,7 @@ class CharacterController {
     if (response === 0)
       return res
         .status(404)
-        .json({ error_description: 'Character not found.' });
+        .json({ error_description: 'character not found.' });
 
     res.status(200).json({ message: 'character deleted' });
 

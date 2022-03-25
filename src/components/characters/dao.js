@@ -1,6 +1,6 @@
 import Character from './model.js';
 import Movie from '../movies/model.js';
-import CharacterMovie from '../../JoinModels/characterMovie.js';
+import CharacterMovie from '../../joinModels/characterMovie.js';
 
 class charactersDao {
   async getAll(queries) {
@@ -66,7 +66,10 @@ class charactersDao {
       const exist = await Character.findOne({
         where: { name: `${newCharacterData.name}` },
       });
-      if (exist) return {error :`character already registered: ${newCharacterData.name}`};
+      if (exist)
+        return {
+          error: `character already registered: ${newCharacterData.name}`,
+        };
 
       // Create codename for query by name -> el rey leon = elreyleon
       const codename = newCharacterData.name.split(' ').join('');
@@ -84,8 +87,6 @@ class charactersDao {
         });
       }
 
-      // const codename = newCharacter
-
       return newCharacter;
     } catch (error) {
       console.log(`error al crear el personaje en la db. ${error}`);
@@ -94,10 +95,14 @@ class charactersDao {
 
   async update(id, newData) {
     try {
+      //Check if exists
+      let updatedCharacter = await Character.findByPk(id);
+      if (!updatedCharacter) return;
+
       // Update codename for query by name -> el rey leon = elreyleon
       const codename = newData.name.split(' ').join('');
       newData.codename = codename;
-      
+
       await Character.update(newData, { where: { id: `${id}` } });
 
       // Remove movies from character
@@ -107,9 +112,7 @@ class charactersDao {
         },
       });
 
-      let updatedCharacter = await Character.findByPk(id);
-      if (!updatedCharacter) return
-
+      //Associate movies
       if (newData.moviesId && newData.moviesId.length > 0) {
         const moviesId = newData.moviesId;
         moviesId.forEach(async (movieID) => {

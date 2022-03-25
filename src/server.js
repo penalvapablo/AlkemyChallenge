@@ -5,24 +5,17 @@ import config from './config/index.js';
 import routes from './routes/index.js';
 import sequelize from './config/db.js';
 
+// Models
 import Character from './components/characters/model.js';
 import Movie from './components/movies/model.js';
-import Genre from './components/genres/model.js'
-import CharacterMovie from './JoinModels/characterMovie.js';
-import MovieGenre from './JoinModels/movieGenre.js'
-import User from './components/users/model.js';
+import Genre from './components/genres/model.js';
+import CharacterMovie from './joinModels/characterMovie.js';
+import MovieGenre from './joinModels/movieGenre.js';
 
 Character.belongsToMany(Movie, { through: CharacterMovie });
 Movie.belongsToMany(Character, { through: CharacterMovie });
 Movie.belongsToMany(Genre, { through: MovieGenre });
 Genre.belongsToMany(Movie, { through: MovieGenre });
-
-
-
-/**
- * PRUEBAS
- */
-
 
 /**
  * -------------- GENERAL SETUP ----------------
@@ -38,14 +31,6 @@ const PORT = config.port;
 
 // Rutas
 routes(app);
-
-// Movie.destroy({where:{}})
-// Character.destroy({where:{}})
-// MovieGenre.destroy({where:{}})
-// CharacterMovie.destroy({where:{}})
-// Genre.destroy({where:{}})
-// User.destroy({where:{}})
-
 
 await sequelize.sync();
 

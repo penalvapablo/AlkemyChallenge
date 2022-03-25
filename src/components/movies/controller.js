@@ -78,7 +78,7 @@ class MoviesController {
     if (response === 0)
       return res.status(400).json({ error_description: 'Movie not found.' });
 
-    res.status(200).json({message: 'movie deleted'});
+    res.status(200).json({ message: 'movie deleted' });
 
     try {
     } catch (error) {

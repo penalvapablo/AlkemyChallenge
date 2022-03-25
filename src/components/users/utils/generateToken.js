@@ -1,14 +1,13 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 import config from '../../../config/index.js';
 
-const PRIVATE_KEY = config.JWT_PRIVATE_KEY
+const PRIVATE_KEY = config.JWT_PRIVATE_KEY;
 
 export default async function generateToken(user) {
   try {
-    const token = jwt.sign({ data: user }, PRIVATE_KEY,{});
+    const token = jwt.sign({ data: user }, PRIVATE_KEY, {});
     return token;
   } catch (error) {
-    console.log(`error al generar jwt: ${error}`)
+    console.log(`error al generar jwt: ${error}`);
   }
-
 }
