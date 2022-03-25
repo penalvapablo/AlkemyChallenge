@@ -25,7 +25,7 @@ Create an account on  [Sendgrid](https://signup.sendgrid.com/).
 ```bash
 npm install
 ```
-3. When a user is registered, a welcome email is sent to him/her.  After creating an account on Sendgird, go to Sender Authentication and verirfy an email to use. Then go to api key and create one. Add sendgrid’s api key to the SENDGRID_API_KEY variable and your verified email to the SENDGRID_EMAIL variable in the ".env" file.
+3. When a user is registered, a welcome email is sent to him/her.  After creating an account on Sendgird, go to Sender Authentication and verirfy an email to use. Then go to Api Key and create one. Add sendgrid’s api key to the SENDGRID_API_KEY variable and your verified email to the SENDGRID_EMAIL variable in the ".env" file.
 
 4. Start the server
 ```bash
